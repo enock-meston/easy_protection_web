@@ -1,13 +1,13 @@
 <div>
     {{-- In work, do what you enjoy. --}}
-    <section class="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+    <section class="py-1 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
         <div class="absolute inset-0 opacity-[0.02] pointer-events-none">
             <div class="absolute inset-0"
                 style="background-image: radial-gradient(circle at 1px 1px, rgb(0,0,0) 1px, transparent 0); background-size: 30px 30px;">
             </div>
         </div>
 
-        <div class="py-20 relative z-10">
+        <div class="py-10 relative z-10">
             <div class="max-w-7xl mx-auto px-4">
                 <nav class="flex items-center space-x-2 text-sm mb-8 animate-fadeIn">
                     <a href="#" class="text-gray-500 hover:text-blue-600 transition-colors">Home</a>
@@ -184,6 +184,18 @@
                                     class="absolute inset-0 -top-2 -bottom-2 left-0 w-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 group-hover:w-full transition-all duration-700 transform skew-x-12">
                                 </div>
                             </button>
+
+                            <!-- Buy Now Button -->
+                            <button id="buyNowBtn" data-product-id="{{ $product->id }}"
+                                class="w-full mt-2 bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl transition-all duration-300 relative overflow-hidden group">
+                                <span class="relative z-10">
+                                    <i class="fas fa-bolt mr-3"></i>
+                                    Buy Now
+                                </span>
+                                <div
+                                    class="absolute inset-0 -top-2 -bottom-2 left-0 w-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 group-hover:w-full transition-all duration-700 transform skew-x-12">
+                                </div>
+                            </button>
                         </div>
 
 
@@ -259,7 +271,7 @@
     </style>
 
     <script>
-        function changeMainImage(thumbnail) {
+        window.changeMainImage = function(thumbnail) {
             const mainImage = document.getElementById('mainImage');
             const allThumbs = document.querySelectorAll('.thumbnail-img');
 
@@ -278,128 +290,25 @@
                 mainImage.style.opacity = '1';
             }, 150);
         }
-    </script>
 
-
-    <script>
-        document.getElementById('buy-now').addEventListener('click', () => {
-            fetch('/check-auth')
-                .then(res => res.json())
-                .then(data => {
-                    if (data.loggedIn) {
-                        // User is logged in, go to the buy page
-                        window.location.href = '/buy';
-                    } else {
-                        // Redirect to login
-                        window.location.href = '/login';
-                    }
-                });
-        });
-
-        let quantity = 1;
-
-        document.getElementById('increase').addEventListener('click', () => {
-            quantity++;
-            document.getElementById('qty').innerText = quantity;
-        });
-
-        document.getElementById('decrease').addEventListener('click', () => {
-            if (quantity > 1) {
-                quantity--;
-                document.getElementById('qty').innerText = quantity;
-            }
-        });
-        // Load cart count
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('/cart-count')
-                .then(res => res.json())
-                .then(data => {
-                    document.getElementById('cart-count').innerText = data.count;
-                });
-
-            loadCartItems();
-        });
-
-        // Toggle dropdown
-        document.getElementById('toggle-cart').addEventListener('click', function() {
-            const dropdown = document.getElementById('cart-dropdown');
-            dropdown.classList.toggle('hidden');
-        });
-
-        // Load and display cart items
-        function loadCartItems() {
-            fetch('/cart-items')
-                .then(res => res.json())
-                .then(data => {
-                    const list = document.getElementById('cart-items-list');
-                    list.innerHTML = ''; // Clear previous
-
-                    if (data.items.length === 0) {
-                        list.innerHTML = '<li class="text-gray-500">Your cart is empty.</li>';
-                    } else {
-                        let total = 0;
-                        data.items.forEach(item => {
-                            total += item.price * item.quantity;
-
-                            const li = document.createElement('li');
-                            li.className = 'border-b pb-2 text-sm text-gray-800';
-                            li.innerHTML =
-                                `<strong>${item.name}</strong> - ${item.quantity} x ${item.price} RWF`;
-                            list.appendChild(li);
-                        });
-                        document.getElementById('cart-total').innerText = `Total: ${total} RWF`;
-
-                    }
-                });
+        // Buy Now button logic
+        const buyNowBtn = document.getElementById('buyNowBtn');
+        if (buyNowBtn) {
+            buyNowBtn.addEventListener('click', function() {
+                const productId = buyNowBtn.getAttribute('data-product-id');
+                fetch('/check-auth')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.loggedIn) {
+                            window.location.href = `/buy?product_id=${productId}`;
+                        } else {
+                            window.location.href = '/login';
+                        }
+                    });
+            });
         }
-
-        // clear cart
-
-        document.getElementById('clear-cart').addEventListener('click', () => {
-            fetch('/clear-cart', {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    }
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('cart-count').innerText = '0';
-                        loadCartItems();
-                    }
-                });
-        });
-
-        // close cart
-        document.getElementById('close-cart').addEventListener('click', () => {
-            document.getElementById('cart-dropdown').classList.add('hidden');
-        });
-
-
-        // After adding to cart, update both count and list
-        document.getElementById('addToCartBtn').addEventListener('click', () => {
-            const productId = document.getElementById('addToCartBtn').getAttribute('data-product-id');
-
-            fetch('/add-to-cart', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        product_id: productId,
-                        quantity: quantity
-                    })
-                })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('cart-count').innerText = data.cart_count;
-                        loadCartItems(); // refresh items
-                    }
-                });
-        });
     </script>
+
+
 
 </div>

@@ -12,13 +12,24 @@ use App\Livewire\ManageProfile;
 use App\Livewire\ManageUser;
 use App\Livewire\ProductDetails;
 use App\Livewire\ProductManager;
+use App\Livewire\ClientProfile;
+use App\Livewire\NavigationMenu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Route::view('/', 'welcome');
 
+// Client Routes
 Route::get('/', HomePage::class)->name('client.home');
 Route::get('/product/{slug}', ProductDetails::class)->name('product.details');
+
+// Client Profile Route (Protected)
+Route::middleware(['auth', 'role:client'])->group(function () {
+    Route::get('/profile', ClientProfile::class)->name('client.profile');
+});
+
+// Navigation Menu Component
+Route::get('/navigation', NavigationMenu::class)->name('navigation');
 
 // cart
 Route::post('/add-to-cart', [CartController::class, 'add'])->name('cart.add');
@@ -63,8 +74,6 @@ Route::post('/logout', [Dashboard::class, 'logout'])->name('logout');
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+// Note: client.profile route is now handled by Livewire component above
 
 require __DIR__ . '/auth.php';

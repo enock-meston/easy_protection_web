@@ -3,8 +3,12 @@
             <!-- Brand Header -->
             <div class="p-6 gradient-bg text-white">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-store text-white"></i>
+                    <div class="w-10 h-10 bg-white bg-opacity-100 rounded-lg flex items-center justify-center">
+                        {{-- <i class="fas fa-store text-white"></i> --}}
+
+                        <img src="{{ asset('images/logo.png') }}" alt="EasyProtection Logo"
+                            class="h-10 w-10 object-contain rounded-full shadow-md group-hover:scale-105 transition duration-300 ease-in-out">
+
                     </div>
                     <div>
                         <h1 class="font-bold text-lg">EasyProtection</h1>

@@ -99,14 +99,14 @@
                             <p class="text-xs text-gray-500">{{ auth()->user()->role }}</p>
                         </div>
                     </div>
+                    {{--  profile button --}}
+                    <a href="{{ route('client.profile') }}" wire:navigate class="text-sm text-gray-500 hover:text-blue-600 font-medium">Profile</a>
+
                     <!-- Logout Button -->
-                    <form method="POST" action="{{ route('logout') }}" class="ml-4">
-                        @csrf
-                        <button type="submit"
-                            class="text-sm text-red-600 hover:text-red-700 font-medium px-4 py-2 rounded-lg transition">
-                            Logout
-                        </button>
-                    </form>
+                    <button wire:click="logout"
+                            class="ml-4 text-sm text-red-600 hover:text-red-700 font-medium px-4 py-2 rounded-lg transition">
+                        Logout
+                    </button>
                 @else
                     <!-- Direct Links -->
                     <a href="/login" class="text-sm text-gray-500 hover:text-blue-600 font-medium">Login</a>

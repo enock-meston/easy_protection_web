@@ -150,7 +150,7 @@
     </section>
 
     {{-- Enhanced Features Section --}}
-    <section class="py-20 bg-white relative overflow-hidden">
+    <section class="py-6 bg-white relative overflow-hidden">
         {{-- Background Pattern --}}
         <div class="absolute inset-0 opacity-5">
             <div class="absolute top-0 left-0 w-full h-full"
@@ -220,97 +220,94 @@
     </section>
 
     {{-- Enhanced Categories Section --}}
-    <section id="categories" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="categories" class="py-6 bg-gradient-to-br from-gray-50 to-blue-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Shop by Category</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Explore our carefully curated collection across
-                    diverse
-                    product categories, each selected for quality and style</p>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Shop by Category</h2>
+                <p class="text-base text-gray-600 max-w-2xl mx-auto">
+                    Explore our curated categories, selected for quality and style.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($categories as $category)
                     <div
-                        class="group category-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer border border-gray-100">
-                        <div class="h-64 overflow-hidden relative">
+                        class="group bg-white rounded-xl shadow-md overflow-hidden cursor-pointer border border-gray-100 hover:border-blue-200 transition-all duration-300">
+                        <div class="h-40 overflow-hidden relative">
                             <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}"
-                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent">
+                                class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent">
                             </div>
+
                             <div
-                                class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-800">
+                                class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full text-xs font-medium text-gray-800">
                                 {{ rand(100, 500) }}+ Items
                             </div>
                         </div>
-                        <div class="p-6">
+
+                        <div class="p-4">
                             <h3
-                                class="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                                class="text-sm font-semibold text-gray-800 mb-1 group-hover:text-blue-600 transition-colors">
                                 {{ $category->name }}
                             </h3>
-                            <p class="text-gray-600 mb-4">{{ Str::limit($category->description, 80) }}</p>
+
+                            <p class="text-xs text-gray-600 mb-2">
+                                {{ Str::limit($category->description, 60) }}
+                            </p>
+
                             <a href="#"
-                                class="text-blue-600 font-semibold hover:text-blue-800 transition-colors inline-flex items-center">
-                                Shop Now <i
-                                    class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                                class="text-blue-600 text-sm font-semibold hover:text-blue-800 inline-flex items-center">
+                                Shop Now
+                                <i
+                                    class="fas fa-arrow-right ml-1 text-xs transform group-hover:translate-x-1 transition-transform"></i>
                             </a>
                         </div>
                     </div>
                 @endforeach
             </div>
-
         </div>
     </section>
 
+
     {{-- Enhanced Featured Products --}}
-    <section id="products" class="py-20 bg-white">
+    <section id="products" class="py-6 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Featured Products</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Handpicked favorites from our premium collection,
-                    chosen for their exceptional quality and customer satisfaction
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Featured Products</h2>
+                <p class="text-base text-gray-600 max-w-2xl mx-auto">
+                    Handpicked favorites chosen for their quality and satisfaction.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($products as $product)
                     <a href="{{ route('product.details', $product->slug) }}"
-                        class="group product-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:border-blue-200 block">
-                        <div
-                            class="group product-card bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:border-blue-200">
-                            <div class="h-64 overflow-hidden relative">
-                                <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}"
-                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        class="group bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:border-blue-300 hover:shadow-lg transition-all duration-300 block">
 
-                                
-                            </div>
+                        <div class="h-40 overflow-hidden relative">
+                            <img src="{{ asset('storage/' . $product->thumbnail) }}" alt="{{ $product->name }}"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
 
-                            <div class="p-6">
-                                <h3
-                                    class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                                    {{ $product->name }}
-                                </h3>
+                        <div class="p-4">
+                            <h3
+                                class="text-sm font-semibold text-gray-800 mb-1 group-hover:text-blue-600 transition-colors duration-300">
+                                {{ $product->name }}
+                            </h3>
 
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-2">
-                                        <span class="text-xl font-bold text-red-600">{{ $product->price }} Rwf</span>
-                                    </div>
-
-                                </div>
-                                 {{-- <button
-                                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold text-sm transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                                        <i class="fas fa-shopping-cart mr-1"></i>Add to Cart
-                                    </button> --}}
+                            <div class="text-sm font-bold text-red-600">
+                                {{ $product->price }} Rwf
                             </div>
                         </div>
                     </a>
                 @endforeach
+            </div>
+        </div>
+    </section>
 
-            </div> <!-- End of grid -->
-        </div> <!-- End of container -->
-    </section> <!-- End of Featured Products Section -->
+
+    <!-- End of Featured Products Section -->
 
 </div>

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="turbo-cache-control" content="no-preview">
 
-    <title>Easy Protection - Premium E-commerce</title>
+    <title>Easy Protection</title>
+{{-- app icon --}}
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.js" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -92,7 +94,7 @@
 </head>
 
 <body class="bg-gray-50" x-data="{ mobileMenuOpen: false }">
-    @include('layouts.includes.navigation_menu')
+    <livewire:navigation-menu />
 
     <main>
         {{ $slot }}
@@ -100,7 +102,150 @@
 
     @include('layouts.includes.footer')
 
-    
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Buy now
+            const buyNowBtn = document.getElementById('buy-now');
+            if (buyNowBtn) {
+                buyNowBtn.addEventListener('click', () => {
+                    fetch('/check-auth')
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.loggedIn) {
+                                window.location.href = '/buy';
+                            } else {
+                                window.location.href = '/login';
+                            }
+                        });
+                });
+            }
+
+            // Quantity controls
+            let quantity = 1;
+            const increaseBtn = document.getElementById('increase');
+            const decreaseBtn = document.getElementById('decrease');
+            const qtySpan = document.getElementById('qty');
+            if (increaseBtn && qtySpan) {
+                increaseBtn.addEventListener('click', () => {
+                    quantity++;
+                    qtySpan.innerText = quantity;
+                });
+            }
+            if (decreaseBtn && qtySpan) {
+                decreaseBtn.addEventListener('click', () => {
+                    if (quantity > 1) {
+                        quantity--;
+                        qtySpan.innerText = quantity;
+                    }
+                });
+            }
+
+            // Load cart count
+            const cartCount = document.getElementById('cart-count');
+            if (cartCount) {
+                fetch('/cart-count')
+                    .then(res => res.json())
+                    .then(data => {
+                        cartCount.innerText = data.count;
+                    });
+            }
+
+            // Load and display cart items
+            function loadCartItems() {
+                const list = document.getElementById('cart-items-list');
+                const cartTotal = document.getElementById('cart-total');
+                if (!list || !cartTotal) return;
+                fetch('/cart-items')
+                    .then(res => res.json())
+                    .then(data => {
+                        list.innerHTML = '';
+                        if (data.items.length === 0) {
+                            list.innerHTML = '<li class="text-gray-500">Your cart is empty.</li>';
+                            cartTotal.innerText = 'Total: 0 RWF';
+                        } else {
+                            let total = 0;
+                            data.items.forEach(item => {
+                                total += item.price * item.quantity;
+                                const li = document.createElement('li');
+                                li.className = 'border-b pb-2 text-sm text-gray-800';
+                                li.innerHTML = `<strong>${item.name}</strong> - ${item.quantity} x ${item.price} RWF`;
+                                list.appendChild(li);
+                            });
+                            cartTotal.innerText = `Total: ${total} RWF`;
+                        }
+                    });
+            }
+
+            // Toggle dropdown
+            const toggleCart = document.getElementById('toggle-cart');
+            const cartDropdown = document.getElementById('cart-dropdown');
+            if (toggleCart && cartDropdown) {
+                toggleCart.addEventListener('click', function() {
+                    cartDropdown.classList.toggle('hidden');
+                });
+            }
+
+            // Clear cart
+            const clearCart = document.getElementById('clear-cart');
+            if (clearCart) {
+                clearCart.addEventListener('click', () => {
+                    fetch('/clear-cart', {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            }
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success && cartCount) {
+                                cartCount.innerText = '0';
+                                loadCartItems();
+                            }
+                        });
+                });
+            }
+
+            // Close cart
+            const closeCart = document.getElementById('close-cart');
+            if (closeCart && cartDropdown) {
+                closeCart.addEventListener('click', () => {
+                    cartDropdown.classList.add('hidden');
+                });
+            }
+
+            // Add to cart
+            const addToCartBtn = document.getElementById('addToCartBtn');
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener('click', () => {
+                    const productId = addToCartBtn.getAttribute('data-product-id');
+                    fetch('/add-to-cart', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: JSON.stringify({
+                                product_id: productId,
+                                quantity: quantity
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success && cartCount) {
+                                cartCount.innerText = data.cart_count;
+                                loadCartItems();
+                            }
+                        });
+                });
+            }
+
+            // Initial load of cart items if cart exists
+            if (document.getElementById('cart-items-list')) {
+                loadCartItems();
+            }
+        });
+    </script>
+
 </body>
 
 </html>

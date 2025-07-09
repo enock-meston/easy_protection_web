@@ -14,16 +14,19 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,string $role): Response
+    public function handle(Request $request, Closure $next, string $role): Response
     {
         if (Auth::check() && Auth::user()->role === $role) {
             return $next($request);
         }
 
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
 
         $userRole = Auth::user()->role;
 
-        if($userRole ==='client'){
+        if($userRole === 'client'){
             return redirect()->route('client.home');
         }
 
