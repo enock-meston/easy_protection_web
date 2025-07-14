@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\BuyController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\FlutterPaymentController;
 use App\Livewire\Admin\Category;
+use App\Livewire\Admin\ClientOrders;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\CategoryManager;
 use App\Livewire\CkeditorTest;
@@ -13,15 +15,18 @@ use App\Livewire\ManageUser;
 use App\Livewire\ProductDetails;
 use App\Livewire\ProductManager;
 use App\Livewire\ClientProfile;
+use App\Livewire\MyOrders;
 use App\Livewire\NavigationMenu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\CategoryProducts;
 
 // Route::view('/', 'welcome');
 
 // Client Routes
 Route::get('/', HomePage::class)->name('client.home');
 Route::get('/product/{slug}', ProductDetails::class)->name('product.details');
+Route::get('/orders', MyOrders::class)->name('client.orders')->middleware('auth');
 
 // Client Profile Route (Protected)
 Route::middleware(['auth', 'role:client'])->group(function () {
@@ -44,14 +49,9 @@ Route::get('/check-auth', function () {
     ]);
 });
 
-Route::post('/place-order', function () {
-    // Save to DB or trigger payment
-    session()->forget('cart');
 
-    return redirect('/')->with('success', 'Order placed successfully!');
-})->name('place.order')->middleware('auth');
-
-
+Route::post('/place-order',[FlutterPaymentController::class,'pay'])->name('place.order')->middleware('auth');
+Route::get('/payment-callback',[FlutterPaymentController::class,'callback'])->name('payment.callback')->middleware('auth');
 
 Route::middleware(['auth', 'role:admin,user'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
@@ -65,15 +65,14 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
     //user profile management
     Route::get('/dashboard/profile', ManageProfile::class)->name('admin.profile');
 
+    //client orders
+    Route::get('/dashboard/client-orders', ClientOrders::class)->name('admin.client-orders');
+
 });
 //logout
 Route::post('/logout', [Dashboard::class, 'logout'])->name('logout');
 
+Route::get('/category/{id}', CategoryProducts::class)->name('category.products');
 
-// Route::view('dashboard', 'dashboard')
-//     ->middleware(['auth', 'verified'])
-//     ->name('dashboard');
-
-// Note: client.profile route is now handled by Livewire component above
 
 require __DIR__ . '/auth.php';

@@ -1,6 +1,6 @@
 <div>
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <nav class="bg-white shadow-lg fixed w-full z-50 ">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <!-- Mobile menu button -->
@@ -113,6 +113,10 @@
                         {{--  profile button --}}
                         <a href="{{ route('client.profile') }}"
                             class="text-sm text-gray-500 hover:text-blue-600 font-medium">Profile</a>
+
+
+                        {{-- my orders --}}
+                        <a href="{{ route('client.orders') }}" class="text-sm text-gray-500 hover:text-blue-600 font-medium">Orders</a>
 
                         <!-- Logout Button -->
                         {{-- <button wire:click="logout"

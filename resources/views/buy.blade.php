@@ -284,6 +284,7 @@
             </div>
 
             @if(!empty($cart))
+
                 <div class="total-section">
                      <div class="total-breakdown">
                         <span>Client Name:</span>
@@ -296,6 +297,10 @@
                     <div class="total-breakdown">
                         <span>CLient Phone Number:</span>
                         <span>{{ $myPhone }}</span>
+                    </div>
+                    <div class="total-breakdown">
+                        <span>Quantity:</span>
+                        <span>{{ $item['quantity'] }}</span>
                     </div>
 
                     <div class="total-breakdown">
@@ -315,6 +320,11 @@
 
                 <form action="{{ route('place.order') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="amount" value="{{ $total }}">
+                    <input type="hidden" name="email" value="{{ $myEmail }}">
+                    <input type="hidden" name="name" value="{{ $myName }}">
+                    <input type="hidden" name="phone" value="{{ $myPhone }}">
+                    <input type="hidden" name="quantity" value="{{ $item['quantity'] }}">
                     <button type="submit" class="order-button">
                         <i class="fas fa-credit-card"></i>
                         Place Order Securely

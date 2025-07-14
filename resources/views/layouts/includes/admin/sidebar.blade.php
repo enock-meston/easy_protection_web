@@ -1,5 +1,5 @@
 <aside id="sidebar"
-            class="w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out transform -translate-x-full md:translate-x-0 fixed md:relative z-40 h-full">
+    class="w-64 bg-white shadow-xl transition-transform duration-300 ease-in-out transform -translate-x-full md:translate-x-0 fixed md:relative z-40 min-h-screen flex flex-col">
             <!-- Brand Header -->
             <div class="p-6 gradient-bg text-white">
                 <div class="flex items-center gap-3">
@@ -18,8 +18,8 @@
             </div>
 
             <!-- Navigation -->
-            <nav class="mt-6 px-3">
-                <ul class="space-y-2">
+            <nav class="mt-6 px-3 flex-1 flex flex-col">
+                <ul class="space-y-2 flex-1">
                     <li>
                         <a href="{{ route('admin.dashboard') }}" wire:navigate
                             class="sidebar-item active flex items-center gap-3 px-4 py-3 rounded-lg text-sm">
@@ -31,7 +31,7 @@
                         <a href="{{ route('admin.product') }}" wire:navigate class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm">
                             <i class="fas fa-box w-5"></i>
                             <span>Products</span>
-                            <span class="ml-auto bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">234</span>
+                            <span class="ml-auto bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"></span>
                         </a>
                     </li>
                     <li>
@@ -41,11 +41,11 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#orders" class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm">
+                        <a href="{{ route('admin.client-orders') }}" wire:navigate class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm">
                             <i class="fas fa-shopping-cart w-5"></i>
                             <span>Orders</span>
                             <span
-                                class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full pulse-animation">5</span>
+                                class="ml-auto bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full pulse-animation"></span>
                         </a>
                     </li>
                     <li>
@@ -104,4 +104,4 @@
                     </form>
                 </div>
             </nav>
-        </aside>
+</aside>

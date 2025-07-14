@@ -14,7 +14,7 @@ class HomePage extends Component
     #[Layout('layouts.home_layout')]
     public function render()
     {
-        $categories = Category::latest()->take(4)->get();
+        $categories = Category::latest()->take(4)->get(); 
         //Fetch featured products or 20 products if no featured flag
         $products = Product::where('status', 'active')->latest()->take(20)->get();
         Auth::user() ? Auth::user()->name : 'Guest';

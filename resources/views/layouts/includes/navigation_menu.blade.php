@@ -147,12 +147,22 @@
             </div>
             <nav class="space-y-4">
                 <a href="#" class="block text-gray-900 hover:text-blue-600 py-2 text-lg font-medium">Home</a>
-                <a href="#"
-                    class="block text-gray-500 hover:text-blue-600 py-2 text-lg font-medium">Categories</a>
+                <a href="#" class="block text-gray-500 hover:text-blue-600 py-2 text-lg font-medium">Categories</a>
                 <a href="#" class="block text-gray-500 hover:text-blue-600 py-2 text-lg font-medium">Products</a>
                 <a href="#" class="block text-gray-500 hover:text-blue-600 py-2 text-lg font-medium">About</a>
                 <a href="#" class="block text-gray-500 hover:text-blue-600 py-2 text-lg font-medium">Contact</a>
+                @if (auth()->check() && auth()->user()->role === 'client')
+                    <a href="{{ route('client.profile') }}" wire:navigate class="block text-gray-900 hover:text-blue-600 py-2 text-lg font-medium">Profile</a>
+                    <button wire:click="logout"
+                        class="w-full text-left text-red-600 hover:text-red-700 py-2 text-lg font-medium rounded transition">
+                        Logout
+                    </button>
+                @else
+                    <a href="/login" class="block text-gray-500 hover:text-blue-600 py-2 text-lg font-medium">Login</a>
+                    <a href="/register" class="block text-white bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded-lg font-semibold transition">Signup</a>
+                @endif
             </nav>
         </div>
     </div>
+
 </div>

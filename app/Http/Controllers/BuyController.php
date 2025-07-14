@@ -22,6 +22,7 @@ class BuyController extends Controller
             $product = Product::find($request->product_id);
             if ($product) {
                 $quantity = (int) $request->input('quantity', 1);
+                // dd($quantity);
                 $cart = [[
                     'id' => $product->id,
                     'name' => $product->name,
@@ -29,7 +30,7 @@ class BuyController extends Controller
                     'quantity' => $quantity,
                 ]];
                 $total = $product->price * $quantity;
-                return view('buy', compact('cart', 'total','myName','myPhone','myEmail'));
+                return view('buy', compact('cart', 'total','myName','myPhone','myEmail','quantity'));
             }
         }
 
