@@ -1,13 +1,12 @@
 <?php
 
+use App\Http\Controllers\AboutPageController;
 use App\Http\Controllers\BuyController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FlutterPaymentController;
-use App\Livewire\Admin\Category;
 use App\Livewire\Admin\ClientOrders;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\CategoryManager;
-use App\Livewire\CkeditorTest;
 use App\Livewire\Customer;
 use App\Livewire\HomePage;
 use App\Livewire\ManageProfile;
@@ -73,6 +72,10 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
 Route::post('/logout', [Dashboard::class, 'logout'])->name('logout');
 
 Route::get('/category/{id}', CategoryProducts::class)->name('category.products');
+
+//about page
+Route::get('/dashboard/about-page',[AboutPageController::class,'index'])->name('admin.about-page');
+Route::put('/dashboard/about-page',[AboutPageController::class,'update'])->name('admin.about-page.update');
 
 
 require __DIR__ . '/auth.php';

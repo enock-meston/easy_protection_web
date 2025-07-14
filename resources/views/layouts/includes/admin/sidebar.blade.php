@@ -69,6 +69,13 @@
                             <span>Analytics</span>
                         </a>
                     </li>
+                    {{-- about page  --}}
+                    <li>
+                        <a href="{{ route('admin.about-page') }}" wire:navigate class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm">
+                            <i class="fas fa-info-circle w-5"></i>
+                            <span>About</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('admin.profile') }}" wire:navigate class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm">
                             <i class="fas fa-cog w-5"></i>

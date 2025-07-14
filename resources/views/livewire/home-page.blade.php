@@ -163,7 +163,7 @@
             <div class="text-center mb-16">
                 <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">About Our Story</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Crafting exceptional experiences through premium quality products and innovative design solutions
+                    {{ $aboutPage->title }}
                 </p>
             </div>
 
@@ -172,14 +172,9 @@
                 <div class="space-y-8">
                     <div class="prose prose-lg max-w-none">
                         <p class="text-gray-700 leading-relaxed text-lg">
-                            Founded in 2020 with a vision to revolutionize the way people experience premium products,
-                            our company has grown from a small startup to a trusted brand serving over 50,000 customers worldwide.
+                            {{ $aboutPage->description }}
                         </p>
-                        <p class="text-gray-700 leading-relaxed text-lg">
-                            We believe that exceptional quality shouldn't be a luxury—it should be the standard.
-                            Every product in our collection is carefully curated and tested to ensure it meets our
-                            rigorous standards for design, functionality, and durability.
-                        </p>
+
                     </div>
 
                     {{-- Mission Values --}}
@@ -189,7 +184,9 @@
                                 <i class="fas fa-bullseye text-white text-xl"></i>
                             </div>
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">Our Mission</h3>
-                            <p class="text-gray-600">To deliver premium products that enhance everyday life through innovation and quality.</p>
+                            <p class="text-gray-600">
+                                {{ $aboutPage->mission }}
+                            </p>
                         </div>
 
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
@@ -197,7 +194,9 @@
                                 <i class="fas fa-heart text-white text-xl"></i>
                             </div>
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">Our Values</h3>
-                            <p class="text-gray-600">Quality, integrity, innovation, and customer satisfaction drive everything we do.</p>
+                            <p class="text-gray-600">
+                                {{ $aboutPage->vision }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -205,7 +204,7 @@
                 {{-- Team/Company Image --}}
                 <div class="relative">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop"
+                        <img src="{{ asset('about_images/' . $aboutPage->image) }}"
                              alt="Our team"
                              class="w-full h-96 object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
@@ -537,7 +536,7 @@
                                 <option value="" class="text-gray-900">Select a subject</option>
                                 <option value="general" class="text-gray-900">General Inquiry</option>
                                 <option value="support" class="text-gray-900">Customer Support</option>
-                                <option value="partnership" class="text-gray-900">Partnership</option>
+                                <option value="refund" class="text-gray-900">Refund</option>
                                 <option value="feedback" class="text-gray-900">Feedback</option>
                             </select>
                         </div>
