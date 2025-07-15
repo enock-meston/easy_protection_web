@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutPageController;
 use App\Http\Controllers\BuyController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FlutterPaymentController;
+use App\Http\Controllers\MessageController;
 use App\Livewire\Admin\ClientOrders;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\CategoryManager;
@@ -19,6 +20,7 @@ use App\Livewire\NavigationMenu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\CategoryProducts;
+use App\Livewire\ManageMessages;
 
 // Route::view('/', 'welcome');
 
@@ -66,6 +68,8 @@ Route::middleware(['auth', 'role:admin,user'])->group(function () {
 
     //client orders
     Route::get('/dashboard/client-orders', ClientOrders::class)->name('admin.client-orders');
+    //messages
+    Route::get('/dashboard/messages', ManageMessages::class)->name('admin.messages');
 
 });
 //logout
@@ -76,6 +80,9 @@ Route::get('/category/{id}', CategoryProducts::class)->name('category.products')
 //about page
 Route::get('/dashboard/about-page',[AboutPageController::class,'index'])->name('admin.about-page');
 Route::put('/dashboard/about-page',[AboutPageController::class,'update'])->name('admin.about-page.update');
+
+//message
+Route::post('/message',[MessageController::class,'store'])->name('message.store');
 
 
 require __DIR__ . '/auth.php';

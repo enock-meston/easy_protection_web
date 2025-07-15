@@ -27,6 +27,13 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    {{-- messages --}}
+                    <li>
+                        <a href="{{ route('admin.messages') }}" wire:navigate class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm">
+                            <i class="fas fa-envelope w-5"></i>
+                            <span>Messages</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('admin.product') }}" wire:navigate class="sidebar-item flex items-center gap-3 px-4 py-3 rounded-lg text-sm">
                             <i class="fas fa-box w-5"></i>

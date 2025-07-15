@@ -498,8 +498,19 @@
                 {{-- Contact Form --}}
                 <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
                     <h3 class="text-2xl font-bold mb-6">Send Us a Message</h3>
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
 
-                    <form class="space-y-6" action="#" method="POST">
+                    <form class="space-y-6" action="{{ route('message.store') }}" method="POST">
+                        @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="first_name" class="block text-sm font-medium text-blue-100 mb-2">First Name</label>
