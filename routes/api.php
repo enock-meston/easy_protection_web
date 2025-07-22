@@ -28,3 +28,14 @@ Route::get('/product-category/{category}', [ProductApiController::class, 'select
 
 //payment api
 Route::post('/payment', [FlutterPaymentController::class, 'paymentApi']);
+
+
+//profile
+Route::get('/profile/{id}',[UserController::class,'myProfileApi']);
+Route::put('/update-profile/{id}',[UserController::class,'updateProfileApi']);
+// change password
+Route::put('/change-password/{id}',[UserController::class,'changePasswordApi']);
+// send new password to email
+Route::post('/send-new-password', [UserController::class, 'sendNewPassword']);
+
+

@@ -10,7 +10,7 @@ class ProductApiController extends Controller
     //select all product and return json
     public function selectLimitProductApi()
     {
-        $products = Product::limit(1)->get();
+        $products = Product::orderBy('created_at', 'desc')->limit(4)->get();
         return response()->json(['product' => $products]);
     }
 

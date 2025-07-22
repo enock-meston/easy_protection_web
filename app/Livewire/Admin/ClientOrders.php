@@ -27,7 +27,7 @@ class ClientOrders extends Component
                 'users.address',
                 'users.street',
                 'users.postal_code'
-            )
+            )->orderBy('flutter_payments.created_at', 'desc')
             ->get();
 
         return view('livewire.admin.client-orders',[
