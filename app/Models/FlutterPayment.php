@@ -12,6 +12,7 @@ class FlutterPayment extends Model
         'email',
         'name',
         'phone',
+        'product_name',
         'amount',
         'currency',
         'quantity',

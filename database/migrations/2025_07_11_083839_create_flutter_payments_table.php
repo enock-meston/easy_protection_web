@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('currency');
             $table->string('quantity');
             $table->enum('status',['pending','successful','failed','cancelled']);
+            $table->string('product_name'); // here we will be more than one product name
             $table->string('payment_status');
             $table->timestamps();
         });

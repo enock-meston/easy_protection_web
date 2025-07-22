@@ -25,6 +25,9 @@ class FlutterPaymentController extends Controller
         $name = $request->name;
         $phone = $request->phone;
         $quantity = $request->quantity;
+        $product_name = $request->product_name;
+        $product_name = implode(',', $product_name);
+
         $tx_ref = date('dHis') . uniqid(); // unique transaction reference
 
         $response = Http::withToken(env('FLW_SECRET_KEY'))
@@ -56,6 +59,7 @@ class FlutterPaymentController extends Controller
             'amount' => $amount,
             'currency' => 'RWF',
             'quantity' => $quantity,
+            'product_name' => $product_name,
             'status' => 'pending',
             'payment_status' => 'pending',
         ]);
@@ -86,5 +90,51 @@ class FlutterPaymentController extends Controller
         ]);
     }
 
-    
+
+    // payment via api
+    public function paymentApi(Request $request){
+        $request->validate([
+            'amount' => 'required|numeric|min:100',
+            'email' => 'required|email',
+            'name' => 'required|string',
+            'phone' => 'required|string',
+            'unit' => 'required|integer|min:1',
+            'tx_ref' => 'required|string',
+            'product_name' => 'required|string',
+            'status' => 'required|string',
+        ]);
+
+        $amount = $request->amount;
+        $email = $request->email;
+        $name = $request->name;
+        $phone = $request->phone;
+        $quantity = $request->unit;
+        $tx_ref = $request->tx_ref;
+        $status = $request->status;
+        $product_name = $request->product_name;
+
+
+        // save to database
+        FlutterPayment::create([
+            'tx_ref' => $tx_ref,
+            'email' => $email,
+            'name' => $name,
+            'phone' => $phone,
+            'amount' => $amount,
+            'currency' => 'RWF',
+            'quantity' => $quantity,
+            'product_name' => $product_name,
+            'status' => $status,
+            'payment_status' => $status,
+        ]);
+
+        return response()->json([
+            'message' => 'Payment successful',
+            'status' => $status,
+            'payment_status' => $status,
+        ]);
+
+
+    }
+
 }

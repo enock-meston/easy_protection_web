@@ -320,7 +320,11 @@
 
                 <form action="{{ route('place.order') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="amount" value="{{ $total }}">
+                    {{-- product names here, from cart ot not--}}
+                    @foreach ($cart as $product)
+                        <input type="hidden" name="product_name[]" value="{{ $product['name'] }}">
+                    @endforeach
+                    <input type="hidden" name="amount" value="{{ $total + ($total/10) }}">
                     <input type="hidden" name="email" value="{{ $myEmail }}">
                     <input type="hidden" name="name" value="{{ $myName }}">
                     <input type="hidden" name="phone" value="{{ $myPhone }}">
