@@ -27,10 +27,10 @@ use App\Livewire\ManageMessages;
 // Client Routes
 Route::get('/', HomePage::class)->name('client.home');
 Route::get('/product/{slug}', ProductDetails::class)->name('product.details');
-Route::get('/orders', MyOrders::class)->name('client.orders')->middleware('auth');
+Route::get('/orders', MyOrders::class)->name('client.orders')->middleware('auth','activity');
 
 // Client Profile Route (Protected)
-Route::middleware(['auth', 'role:client'])->group(function () {
+Route::middleware(['auth', 'role:client','activity'])->group(function () {
     Route::get('/profile', ClientProfile::class)->name('client.profile');
 });
 
@@ -43,7 +43,7 @@ Route::get('/cart-count', [CartController::class, 'count'])->name('cart.count');
 Route::get('/cart-items', [CartController::class, 'items']);
 Route::delete('/clear-cart', [CartController::class, 'clear']);
 
-Route::get('/buy', [BuyController::class, 'index'])->middleware('auth');
+Route::get('/buy', [BuyController::class, 'index'])->middleware('auth','activity');
 Route::get('/check-auth', function () {
     return response()->json([
         'loggedIn' => Auth::check(),
@@ -51,10 +51,10 @@ Route::get('/check-auth', function () {
 });
 
 
-Route::post('/place-order',[FlutterPaymentController::class,'pay'])->name('place.order')->middleware('auth');
-Route::get('/payment-callback',[FlutterPaymentController::class,'callback'])->name('payment.callback')->middleware('auth');
+Route::post('/place-order',[FlutterPaymentController::class,'pay'])->name('place.order')->middleware('auth','activity');
+Route::get('/payment-callback',[FlutterPaymentController::class,'callback'])->name('payment.callback')->middleware('auth','activity');
 
-Route::middleware(['auth', 'role:admin,user'])->group(function () {
+Route::middleware(['auth', 'role:admin,user','activity'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
     Route::get('/dashboard/category', CategoryManager::class)->name('admin.category');
     //product manager
@@ -78,8 +78,8 @@ Route::post('/logout', [Dashboard::class, 'logout'])->name('logout');
 Route::get('/category/{id}', CategoryProducts::class)->name('category.products');
 
 //about page
-Route::get('/dashboard/about-page',[AboutPageController::class,'index'])->name('admin.about-page');
-Route::put('/dashboard/about-page',[AboutPageController::class,'update'])->name('admin.about-page.update');
+Route::get('/dashboard/about-page',[AboutPageController::class,'index'])->name('admin.about-page')->middleware('auth','activity');
+Route::put('/dashboard/about-page',[AboutPageController::class,'update'])->name('admin.about-page.update')->middleware('auth','activity');
 
 //message
 Route::post('/message',[MessageController::class,'store'])->name('message.store');

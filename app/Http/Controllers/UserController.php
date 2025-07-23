@@ -48,9 +48,19 @@ class UserController extends Controller
         $user = User::create($request->all());
         $user->password = Hash::make($request->password);
         $user->save();
+
+        //welcoming new user email
+         // Send email
+        Mail::send('emails.notification_to_user', [
+            'user' => $user
+        ], function ($message) use ($user) {
+            $message->to($user->email)
+                ->subject('Welcome to our Platform');
+        });
         // with message success
         return response()->json(['message' => 'Account created successfully'], 201);
     }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');

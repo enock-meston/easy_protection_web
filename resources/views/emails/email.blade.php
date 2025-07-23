@@ -12,7 +12,7 @@
           <tr>
             <td align="center">
               <!-- Replace with your actual full URL to the logo -->
-              <img src="https://yourdomain.com/images/logo.png" alt="Logo" style="width: 80px; margin-bottom: 20px;">
+              <img src="{{ asset('images/logo.png') }}" alt="Logo" style="width: 80px; margin-bottom: 20px;">
             </td>
           </tr>
           <tr>

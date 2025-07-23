@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use Illuminate\Support\Facades\Mail;
 
 new #[Layout('layouts.home_layout')] class extends Component
 {
@@ -27,15 +28,22 @@ new #[Layout('layouts.home_layout')] class extends Component
         $validated['role'] = 'client'; // Default role
 
         event(new Registered($user = User::create($validated)));
+ // Send email
+        Mail::send('emails.notification_to_user', [
+            'user' => $user
+        ], function ($message) use ($user) {
+            $message->to($user->email)
+                ->subject('Welcome to our Platform');
+        });
 
         Auth::login($user);
 
         if ($user->role === 'admin') {
-            $this->redirect(route('admin.dashboard', absolute: false), navigate: true);
+            $this->redirect(route('admin.dashboard', absolute: false), navigate: false);
             return;
         }
         if ($user->role === 'client') {
-            $this->redirect(route('client.home', absolute: false), navigate: true);
+            $this->redirect(route('client.home', absolute: false), navigate: false);
             return;
         }
     }

@@ -13,10 +13,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+         // Global middleware (will run on every request)
+    // $middleware->append([
+    //     \App\Http\Middleware\GlobalActivityLogger::class,
+    // ]);
         // Register your role middleware alias here
         $middleware->alias([
             'role' => RoleMiddleware::class,
+            'activity' => \App\Http\Middleware\GlobalActivityLogger::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Mail\PaymentReceivedMail;
+use Illuminate\Support\Facades\Mail;
 
 class FlutterPayment extends Model
 {
@@ -20,4 +22,12 @@ class FlutterPayment extends Model
         'payment_status',
     ];
 
+
+    protected static function booted()
+    {
+        static::created(function ($payment) {
+            // Send email here
+            Mail::to('ndagijimanaenock11@gmail.com')->send(new PaymentReceivedMail($payment));
+        });
+    }
 }
