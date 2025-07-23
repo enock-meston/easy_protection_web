@@ -71,11 +71,12 @@
                                 </span>
                             </button>
                         </a>
-                        <button
-                            class="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                            <i class="fas fa-play mr-2"></i>
-                            Watch Demo
-                        </button>
+                        <a href="path-to-your-app.apk" download
+                            class="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center">
+                            <i class="fas fa-download mr-2"></i>
+                            Download App
+                        </a>
+
                     </div>
                 </div>
 
@@ -180,7 +181,8 @@
                     {{-- Mission Values --}}
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
                                 <i class="fas fa-bullseye text-white text-xl"></i>
                             </div>
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">Our Mission</h3>
@@ -190,7 +192,8 @@
                         </div>
 
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-4">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-4">
                                 <i class="fas fa-heart text-white text-xl"></i>
                             </div>
                             <h3 class="text-lg font-semibold text-gray-900 mb-2">Our Values</h3>
@@ -204,10 +207,10 @@
                 {{-- Team/Company Image --}}
                 <div class="relative">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                        <img src="{{ asset('about_images/' . $aboutPage->image) }}"
-                             alt="Our team"
-                             class="w-full h-96 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                        <img src="{{ asset('about_images/' . $aboutPage->image) }}" alt="Our team"
+                            class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent">
+                        </div>
                         <div class="absolute bottom-6 left-6 text-white">
                             <h3 class="text-2xl font-bold mb-2">Our Amazing Team</h3>
                             <p class="text-blue-100">Passionate professionals dedicated to excellence</p>
@@ -264,7 +267,8 @@
                             <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
 
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent">
                             </div>
 
                             <div
@@ -404,7 +408,8 @@
     </section>
 
     {{-- Enhanced Contact Section --}}
-    <section id="contact" class="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white relative overflow-hidden">
+    <section id="contact"
+        class="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white relative overflow-hidden">
         {{-- Background Pattern --}}
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-0 left-0 w-full h-full"
@@ -416,7 +421,8 @@
             <div class="text-center mb-16">
                 <h2 class="text-4xl lg:text-5xl font-bold mb-6">Get in Touch</h2>
                 <p class="text-xl text-blue-100 max-w-3xl mx-auto">
-                    Ready to start your journey with us? We'd love to hear from you and help you find the perfect products.
+                    Ready to start your journey with us? We'd love to hear from you and help you find the perfect
+                    products.
                 </p>
             </div>
 
@@ -434,7 +440,8 @@
                     {{-- Contact Details --}}
                     <div class="space-y-6">
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                            <div
+                                class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
                                 <i class="fas fa-map-marker-alt text-blue-300"></i>
                             </div>
                             <div>
@@ -444,7 +451,8 @@
                         </div>
 
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                            <div
+                                class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
                                 <i class="fas fa-phone text-blue-300"></i>
                             </div>
                             <div>
@@ -454,7 +462,8 @@
                         </div>
 
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                            <div
+                                class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
                                 <i class="fas fa-envelope text-blue-300"></i>
                             </div>
                             <div>
@@ -464,7 +473,8 @@
                         </div>
 
                         <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                            <div
+                                class="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
                                 <i class="fas fa-clock text-blue-300"></i>
                             </div>
                             <div>
@@ -479,16 +489,20 @@
                     <div class="pt-8">
                         <h4 class="font-semibold mb-4">Follow Us</h4>
                         <div class="flex space-x-4">
-                            <a href="#" class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <a href="#"
+                                class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
                                 <i class="fab fa-facebook-f text-blue-300"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <a href="#"
+                                class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
                                 <i class="fab fa-twitter text-blue-300"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <a href="#"
+                                class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
                                 <i class="fab fa-instagram text-blue-300"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <a href="#"
+                                class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors">
                                 <i class="fab fa-linkedin-in text-blue-300"></i>
                             </a>
                         </div>
@@ -498,12 +512,12 @@
                 {{-- Contact Form --}}
                 <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
                     <h3 class="text-2xl font-bold mb-6">Send Us a Message</h3>
-                    @if(session('success'))
+                    @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
                         </div>
                     @endif
-                    @if(session('error'))
+                    @if (session('error'))
                         <div class="alert alert-danger">
                             {{ session('error') }}
                         </div>
@@ -513,37 +527,41 @@
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="first_name" class="block text-sm font-medium text-blue-100 mb-2">First Name</label>
+                                <label for="first_name" class="block text-sm font-medium text-blue-100 mb-2">First
+                                    Name</label>
                                 <input type="text" id="first_name" name="first_name"
-                                       class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
-                                       placeholder="John">
+                                    class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
+                                    placeholder="John">
                             </div>
                             <div>
-                                <label for="last_name" class="block text-sm font-medium text-blue-100 mb-2">Last Name</label>
+                                <label for="last_name" class="block text-sm font-medium text-blue-100 mb-2">Last
+                                    Name</label>
                                 <input type="text" id="last_name" name="last_name"
-                                       class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
-                                       placeholder="Doe">
+                                    class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
+                                    placeholder="Doe">
                             </div>
                         </div>
 
                         <div>
-                            <label for="email" class="block text-sm font-medium text-blue-100 mb-2">Email Address</label>
+                            <label for="email" class="block text-sm font-medium text-blue-100 mb-2">Email
+                                Address</label>
                             <input type="email" id="email" name="email"
-                                   class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
-                                   placeholder="john@example.com">
+                                class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
+                                placeholder="john@example.com">
                         </div>
 
                         <div>
-                            <label for="phone" class="block text-sm font-medium text-blue-100 mb-2">Phone Number</label>
+                            <label for="phone" class="block text-sm font-medium text-blue-100 mb-2">Phone
+                                Number</label>
                             <input type="tel" id="phone" name="phone"
-                                   class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
-                                   placeholder="+250 788 123 456">
+                                class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
+                                placeholder="+250 788 123 456">
                         </div>
 
                         <div>
                             <label for="subject" class="block text-sm font-medium text-blue-100 mb-2">Subject</label>
                             <select id="subject" name="subject"
-                                    class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300">
+                                class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300">
                                 <option value="" class="text-gray-900">Select a subject</option>
                                 <option value="general" class="text-gray-900">General Inquiry</option>
                                 <option value="support" class="text-gray-900">Customer Support</option>
@@ -555,20 +573,20 @@
                         <div>
                             <label for="message" class="block text-sm font-medium text-blue-100 mb-2">Message</label>
                             <textarea id="message" name="message" rows="5"
-                                      class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 resize-none"
-                                      placeholder="Tell us how we can help you..."></textarea>
+                                class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300 resize-none"
+                                placeholder="Tell us how we can help you..."></textarea>
                         </div>
 
                         <div class="flex items-center">
                             <input type="checkbox" id="newsletter" name="newsletter"
-                                   class="w-4 h-4 text-blue-600 bg-white/10 border-white/20 rounded focus:ring-blue-400 focus:ring-2">
+                                class="w-4 h-4 text-blue-600 bg-white/10 border-white/20 rounded focus:ring-blue-400 focus:ring-2">
                             <label for="newsletter" class="ml-2 text-sm text-blue-100">
                                 I'd like to receive updates about new products and special offers
                             </label>
                         </div>
 
                         <button type="submit"
-                                class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                             <i class="fas fa-paper-plane mr-2"></i>
                             Send Message
                         </button>
@@ -578,24 +596,30 @@
 
             {{-- Quick Contact Cards --}}
             <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div
+                    class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-headset text-2xl text-white"></i>
                     </div>
                     <h4 class="text-lg font-semibold mb-2">24/7 Support</h4>
                     <p class="text-blue-100 text-sm">Get instant help from our support team anytime, anywhere.</p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div
+                    class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-green-400 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-shipping-fast text-2xl text-white"></i>
                     </div>
                     <h4 class="text-lg font-semibold mb-2">Fast Delivery</h4>
                     <p class="text-blue-100 text-sm">Quick and reliable shipping to your doorstep worldwide.</p>
                 </div>
 
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300">
-                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div
+                    class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-center hover:bg-white/20 transition-all duration-300">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-medal text-2xl text-white"></i>
                     </div>
                     <h4 class="text-lg font-semibold mb-2">Quality Guarantee</h4>
