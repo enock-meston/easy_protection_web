@@ -19,5 +19,9 @@ RUN composer install
 COPY .env.example .env
 RUN php artisan key:generate
 
+RUN php artisan config:clear && php artisan config:cache
+RUN php artisan migrate --force
+
+
 EXPOSE 8000
 CMD php artisan serve --host=0.0.0.0 --port=8000
